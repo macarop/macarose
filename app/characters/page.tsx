@@ -1,4 +1,5 @@
 import { auth, signOut } from "@/auth";
+import Link from "next/link";
 
 export default async function CharactersPage() {
   const session = await auth();
@@ -26,7 +27,7 @@ export default async function CharactersPage() {
             >
               <button
                 type="submit"
-                className="text-sm px-3 py-1.5 rounded-lg border transition-opacity hover:opacity-70"
+                className="text-sm px-3 py-1.5 rounded-lg border transition-opacity hover:opacity-70 cursor-pointer"
                 style={{ borderColor: "var(--border)", color: "var(--foreground)" }}
               >
                 Déconnexion
@@ -35,18 +36,36 @@ export default async function CharactersPage() {
           </div>
         </div>
 
-        {/* Contenu statique */}
+        {/* Titre section + bouton nouveau */}
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-lg font-semibold" style={{ color: "var(--foreground)" }}>
+            Mes personnages
+          </h2>
+          <Link
+            href="/characters/new"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-opacity hover:opacity-80"
+            style={{ background: "var(--accent)", color: "var(--background)" }}
+          >
+            + Nouveau personnage
+          </Link>
+        </div>
+
+        {/* État vide */}
         <div
           className="rounded-2xl border p-10 text-center"
           style={{ background: "var(--muted)", borderColor: "var(--border)" }}
         >
           <div className="text-4xl mb-4">🧙</div>
-          <h2 className="text-xl font-semibold mb-2" style={{ color: "var(--foreground)" }}>
-            Mes personnages
-          </h2>
-          <p className="text-sm" style={{ color: "var(--foreground)", opacity: 0.5 }}>
-            La création de personnages arrive bientôt.
+          <p className="text-sm mb-6" style={{ color: "var(--foreground)", opacity: 0.5 }}>
+            Tu n&apos;as pas encore de personnage.
           </p>
+          <Link
+            href="/characters/new"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-opacity hover:opacity-80"
+            style={{ background: "var(--accent)", color: "var(--background)" }}
+          >
+            + Créer mon premier personnage
+          </Link>
         </div>
       </div>
     </main>
