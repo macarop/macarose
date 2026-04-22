@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id         String      @id @default(cuid())
+  email      String      @unique
+  name       String?
+  image      String?
+  createdAt  DateTime    @default(now())
+  characters Character[]
+}
+
+model Character {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name      String
+  classId   String
+  level     Int      @default(1)
+  xp        Int      @default(0)
+  alignment String
+
+  str       Int
+  int       Int
+  wis       Int
+  dex       Int
+  con       Int
+  cha       Int
+
+  maxHp     Int
+  currentHp Int
+  armorClass Int
+  gold      Int      @default(0)
+
+  inventory Json     @default("[]")
+  notes     String?
+  archived  Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, name])
+}

@@ -1,34 +1,21 @@
 import Link from "next/link";
+import CharacterWizard from "./CharacterWizard";
 
 export default function NewCharacterPage() {
   return (
-    <main
-      className="min-h-screen px-4 py-12"
-      style={{ background: "var(--background)" }}
-    >
-      <div className="max-w-2xl mx-auto">
-        <div className="flex items-center gap-3 mb-10">
-          <Link
-            href="/characters"
-            className="text-sm transition-opacity hover:opacity-70"
-            style={{ color: "var(--foreground)", opacity: 0.5 }}
-          >
+    <main className="min-h-screen px-4 py-10" style={{ background: "var(--background)" }}>
+      <div className="max-w-4xl mx-auto">
+        <div className="mb-8">
+          <Link href="/characters"
+            className="text-sm transition-opacity hover:opacity-100"
+            style={{ color: "var(--foreground)", opacity: 0.4 }}>
             ← Mes personnages
           </Link>
-        </div>
-
-        <div
-          className="rounded-2xl border p-10 text-center"
-          style={{ background: "var(--muted)", borderColor: "var(--border)" }}
-        >
-          <div className="text-4xl mb-4">⚒️</div>
-          <h1 className="text-xl font-semibold mb-2" style={{ color: "var(--foreground)" }}>
+          <h1 className="text-2xl font-bold mt-3" style={{ color: "var(--accent)" }}>
             Créer un personnage
           </h1>
-          <p className="text-sm" style={{ color: "var(--foreground)", opacity: 0.5 }}>
-            Le wizard de création arrive bientôt.
-          </p>
         </div>
+        <CharacterWizard />
       </div>
     </main>
   );
